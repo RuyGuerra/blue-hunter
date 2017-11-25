@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { SharedModule } from '../shared/shared.module';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   imports: [
@@ -13,9 +14,12 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   exports: [
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToolbarComponent
   ],
-  declarations: []
+  declarations: [
+    ToolbarComponent
+  ]
 })
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
