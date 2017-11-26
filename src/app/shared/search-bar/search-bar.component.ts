@@ -21,4 +21,9 @@ export class SearchBarComponent implements OnInit {
     this.search.emit(this.value);
   }
 
+  onEnterKey() {
+    // console.log('====>', this.value);
+    this.search.emit(this.value);
+  }
+
 }

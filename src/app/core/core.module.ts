@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { SharedModule } from '../shared/shared.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { UserService } from './services/user.service';
+import { BookService } from './services/book.service';
 
 @NgModule({
   imports: [
@@ -19,6 +21,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
   ],
   declarations: [
     ToolbarComponent
+  ],
+  providers: [
+    UserService,
+    BookService
   ]
 })
 export class CoreModule {
