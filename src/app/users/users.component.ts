@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.less']
 })
 export class UsersComponent implements OnInit {
+  title = 'Users';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSearch(event) {
+    console.log('Search users:', event);
   }
 
 }

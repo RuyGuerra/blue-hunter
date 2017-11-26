@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./books-by-title.component.less']
 })
 export class BooksByTitleComponent implements OnInit {
+  title = 'Books (by title)';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSearch(event) {
+    console.log('Search Books by Title:', event);
   }
 
 }
