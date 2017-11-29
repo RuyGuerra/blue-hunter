@@ -4,9 +4,9 @@ const config = {
     },
     db: {
       config: {
-        user: 'sa',
-        password: 'litiummuon',
-        server: 'localhost',
+        user: '*****',
+        password: '******',
+        server: '*****',
         database: 'bluehunter'
       }
     }
