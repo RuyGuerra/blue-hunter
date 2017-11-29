@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { IUser } from '../models/user';
 import { UserService } from '../core/services/user.service';
+import { AlertComponent } from '../shared/alert/alert.component';
+import { ServiceError } from '../models/service-error';
+
 
 @Component({
   selector: 'app-users',
@@ -19,27 +22,31 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    public snackBar: MatSnackBar
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
   }
 
   onSearch(event) {
-    console.log('Search users:', event);
     this.userService.getUsersByName(event)
       .subscribe((users: IUser[]) => {
-        console.log('>>>>> Observable: ', users);
         if (users.length === 0) {
-          this.openSnackBar('Sorry no results found. Please modify your search criteria and try again.', 'Ok');
+          this.openAlert('Sorry no results found. Please modify your search criteria and try again.');
         }
         this.dataSource = new UsersDataSource(users);
       },
-      (err) => console.log(err));
+      (err) => {
+        this.openAlert(err.friendlyMessage);
+        console.log(err);
+      });
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
+  openAlert(msg: string): void {
+    const dialogRef = this.dialog.open(AlertComponent, {
+      width: '600px',
+      data: { message: msg }
+    });
   }
 
 }

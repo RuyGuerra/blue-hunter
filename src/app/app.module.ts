@@ -7,8 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { UsersModule } from './users/users.module';
-import { BooksByTitleModule } from './books-by-title/books-by-title.module';
-import { BooksByAuthorModule } from './books-by-author/books-by-author.module';
+import { BooksModule } from './books/books.module';
 
 
 
@@ -23,8 +22,7 @@ import { BooksByAuthorModule } from './books-by-author/books-by-author.module';
     CoreModule,
     SharedModule,
     UsersModule,
-    BooksByTitleModule,
-    BooksByAuthorModule
+    BooksModule
   ],
   providers: [],
   bootstrap: [AppComponent]

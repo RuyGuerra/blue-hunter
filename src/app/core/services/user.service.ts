@@ -1,18 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import { IUser } from '../../models/user';
 import { ServiceError } from '../../models/service-error';
-import { environment } from '../../../environments/environment';
+import { IAppConfig, APP_CONFIG } from '../../config/app.config';
 
 @Injectable()
 export class UserService {
-  private baseUrl = environment.baseApiUrl + '/user';
+  private baseUrl = this.config.apiEndpoint + '/user';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(APP_CONFIG) private config: IAppConfig
   ) {
 
   }
@@ -23,6 +25,7 @@ export class UserService {
   }
 
   private handleError(err: HttpErrorResponse): Observable<ServiceError> {
+    // console.log('>>> ERROR HTTP: ', err);
     const dataError = new ServiceError();
     if (err.error instanceof Error) {
       // A client-side or network error occurred.

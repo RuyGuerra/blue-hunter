@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { StarsComponent } from './stars/stars.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   imports: [
@@ -15,10 +17,16 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MaterialModule,
     SearchBarComponent,
-    FormsModule
+    FormsModule,
+    StarsComponent
   ],
   declarations: [
-    SearchBarComponent
+    SearchBarComponent,
+    StarsComponent,
+    AlertComponent
+  ],
+  entryComponents: [
+    AlertComponent
   ]
 })
 export class SharedModule { }

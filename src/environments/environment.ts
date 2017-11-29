@@ -5,5 +5,4 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://dummy-blue-hunter.mybluemix.net'
 };

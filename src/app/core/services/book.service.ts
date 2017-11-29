@@ -1,24 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import { IBook } from '../../models/book';
 import { ServiceError } from '../../models/service-error';
-import { environment } from '../../../environments/environment';
+import { IAppConfig, APP_CONFIG } from '../../config/app.config';
 
 @Injectable()
 export class BookService {
-  private baseUrl = environment.baseApiUrl + '/book';
+  private baseUrl = this.config.apiEndpoint + '/book';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(APP_CONFIG) private config: IAppConfig
   ) {
 
   }
 
-  getBooksByTitle(title: string): Observable<IBook[] | ServiceError> {
-    return this.http.get<IBook[]>(this.baseUrl + '/by-title/' + title)
+  getBooksBy(title: string, field: string): Observable<IBook[] | ServiceError> {
+    const complement = field.toLowerCase().replace(' ', '-');
+    const apiPath = this.baseUrl + '/' + complement + '/' + title;
+    return this.http.get<IBook[]>(apiPath)
       .catch(this.handleError);
   }
 
@@ -33,7 +37,7 @@ export class BookService {
     }
     dataError.errorNumber = 100;
     dataError.friendlyMessage = 'An error occurred retrieving data.';
-    return Observable.throw(dataError);
+    return Observable.throw( dataError);
   }
 
 }

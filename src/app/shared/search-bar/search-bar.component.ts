@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,14 +7,21 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
   @Input() title: string;
+  @Input() options: any[] = [];
   @Output() search = new EventEmitter();
-  simput: any;
   value: string;
+  selOption = 'by-title';
 
   constructor() { }
 
   ngOnInit() {
+    // this.selOption = this.options[0].value;
+    // console.log('>>>>>>>>', this.options[0]);
   }
+
+  // ngAfterViewInit() {
+  //   console.log(this.seloptions);
+  // }
 
   onClick() {
     // console.log('====>', this.value);
@@ -26,4 +33,14 @@ export class SearchBarComponent implements OnInit {
     this.search.emit(this.value);
   }
 
+  // onChange() {
+  //   console.log('>>>>', this.seloptions);
+  // }
+
+  // onClickChip(event) {
+  //   this.selOption = event.target.innerText;
+  //   // console.log(event.target.innerText);
+  // }
+
 }
+
