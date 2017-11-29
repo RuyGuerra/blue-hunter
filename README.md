@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
+Node API with MS SQL Database.
+
 ## Development server
 
 Run `ng build` and then `npm start`. Navigate to `http://localhost:3000/`.
