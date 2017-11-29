@@ -25,7 +25,6 @@ export class UserService {
   }
 
   private handleError(err: HttpErrorResponse): Observable<ServiceError> {
-    // console.log('>>> ERROR HTTP: ', err);
     const dataError = new ServiceError();
     if (err.error instanceof Error) {
       // A client-side or network error occurred.
